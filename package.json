@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@modelcontextprotocol/sdk-types": "^1.7.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.17.24",
     "@types/node-fetch": "^2.6.11",
