@@ -1,0 +1,6 @@
+[tools]
+pnpm = "latest"
+
+[tasks.mcp]
+description = "Starts mcp"
+run = 'pnpm run mcp'
