@@ -9,7 +9,7 @@ const server = new McpServer({
   version: '1.0.0',
 });
 
-server.tool('chargeReport', 'Get the latest charge report', {}, async ({}) => {
+server.tool('chargeReport', 'Get the latest charge report for your vehicle', {}, async ({}) => {
   const client = new ChargeReport(undefined, false);
   const report = await client.getChargeReport();
   return {
@@ -22,18 +22,23 @@ server.tool('chargeReport', 'Get the latest charge report', {}, async ({}) => {
   };
 });
 
-server.tool('batteryInfo', 'Get information about the battery', {}, async ({}) => {
-  const client = new BatteryInfo(undefined, false);
-  const info = await client.getVehicleInfo();
-  return {
-    content: [
-      {
-        type: 'text',
-        text: JSON.stringify(info, null, 2),
-      },
-    ],
-  };
-});
+server.tool(
+  'batteryInfo',
+  'Get information about your vehicle, its location, type, and battery level',
+  {},
+  async ({}) => {
+    const client = new BatteryInfo(undefined, false);
+    const info = await client.getVehicleInfo();
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(info, null, 2),
+        },
+      ],
+    };
+  }
+);
 
 async function main() {
   const transport = new StdioServerTransport();
