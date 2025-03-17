@@ -169,3 +169,53 @@ export interface ChargeSession {
   est_fuel_savings_string: string;
   energy_used_string: string;
 }
+
+export interface RoadTrip {
+  id: string;
+  detail: string;
+  subscription_limited: boolean;
+  finalized: boolean;
+  delete: string;
+  display_type: string;
+  title: string;
+  start_time_ms: number;
+  stop_time_ms: number;
+  distance_traveled: number;
+  distance_traveled_units: string;
+  distance_traveled_string: string;
+  route: {
+    lines: string[];
+    drive_markers: {
+      latitude: number;
+      longitude: number;
+      type: string;
+    }[];
+    charger_markers: {
+      latitude: number;
+      longitude: number;
+      fast: boolean;
+      type: string;
+    }[];
+  };
+}
+
+export interface RoadTripsResponse {
+  road_trips: RoadTrip[];
+  meta: {
+    current_page: number;
+    next_page: number | null;
+    prev_page: number | null;
+    total_pages: number;
+    total_count: number;
+    per_page: number;
+    allow_create_road_trip: boolean;
+    feature_sample: {
+      [key: string]: {
+        available: boolean;
+        next_available: string | null;
+        num_available: number | null;
+        user_pro: boolean;
+      };
+    };
+  };
+}

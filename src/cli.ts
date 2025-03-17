@@ -3,6 +3,7 @@ import { run, subcommands } from 'cmd-ts';
 import { loginCommand } from './commands/login/index.js';
 import { chargeCommand } from './commands/charge/index.js';
 import { batteryCommand } from './commands/battery/index.js';
+import { roadTripsCommand } from './commands/roadtrips/index.js';
 
 const cli = subcommands({
   name: 'tezlab',
@@ -11,6 +12,7 @@ const cli = subcommands({
     login: loginCommand,
     charge: chargeCommand,
     battery: batteryCommand,
+    roadtrips: roadTripsCommand,
   },
 });
 
