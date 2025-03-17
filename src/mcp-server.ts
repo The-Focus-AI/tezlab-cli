@@ -5,6 +5,7 @@ import { BatteryInfo } from './commands/battery/BatteryInfo.js';
 import { RoadTrips } from './commands/roadtrips/RoadTrips.js';
 import { Stats } from './commands/stats/Stats.js';
 import { Trends } from './commands/trends/Trends.js';
+import { Superchargers } from './commands/superchargers/Superchargers.js';
 import { z } from 'zod';
 
 // Create server instance
@@ -102,6 +103,39 @@ server.tool('vehicleTrends', 'Get trends data about your vehicle', {}, async ({}
     ],
   };
 });
+
+server.tool('superchargers', 'Get a list of all superchargers', {}, async ({}) => {
+  const client = new Superchargers(undefined, false);
+  const superchargers = await client.getSuperchargers();
+  return {
+    content: [
+      {
+        type: 'text',
+        text: JSON.stringify(superchargers, null, 2),
+      },
+    ],
+  };
+});
+
+server.tool(
+  'superchargerById',
+  'Get details of a specific supercharger by ID',
+  {
+    id: z.string().describe('The ID of the supercharger to retrieve'),
+  },
+  async ({ id }) => {
+    const client = new Superchargers(undefined, false);
+    const supercharger = await client.getSuperchargerDetail(id);
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(supercharger, null, 2),
+        },
+      ],
+    };
+  }
+);
 
 async function main() {
   const transport = new StdioServerTransport();

@@ -251,3 +251,102 @@ export interface TrendItem {
 export interface TrendsResponse {
   trends: TrendItem[];
 }
+
+export interface Award {
+  award: string;
+  user_id: number;
+  name: string;
+  image: string;
+  award_string: string;
+  model_name: string;
+}
+
+export interface Rating {
+  rating: number;
+  responses: number;
+}
+
+export interface RatingCategory {
+  [key: string]: Rating;
+}
+
+export interface Supercharger {
+  id: number | null;
+  uuid?: string;
+  name: string;
+  address?: string;
+  latitude: number | string;
+  longitude: number | string;
+  stalls?: number;
+  status?: string;
+  distance?: number;
+  distance_units?: string;
+  power?: number;
+  visited?: boolean;
+  num_comments?: number;
+  awards?: Award[];
+  rating?: RatingCategory;
+}
+
+export interface SuperchargersResponse {
+  superchargers: Supercharger[];
+}
+
+export interface StallCount {
+  total?: number;
+  available?: number;
+  in_use?: number;
+}
+
+export interface Review {
+  id: number;
+  comment: string;
+  created_at: string;
+  user_name: string;
+}
+
+export interface CostInfo {
+  cost_type: string;
+  updated_recently: boolean;
+  user_free_supercharging: boolean;
+  local: {
+    tier_1: string | null;
+    tier_1_string: string | null;
+    tier_2: string | null;
+    tier_2_string: string | null;
+    kwh: string | null;
+    kwh_string: string | null;
+  };
+  usd: {
+    tier_1: string | null;
+    tier_2: string | null;
+    kwh: string | null;
+  };
+}
+
+export interface Currency {
+  description: string;
+  code: string;
+  symbol: string;
+  symbol_display: string;
+  usd_exchange: number;
+  usd_exchange_date: number;
+  is_user_default: boolean;
+}
+
+export interface SuperchargerDetail extends Supercharger {
+  hours?: string;
+  amenities?: string[];
+  stall_count?: StallCount;
+  reviews?: Review[];
+  photos?: string[];
+  detail?: string;
+  cost_string?: string;
+  cost?: CostInfo;
+  currency_local?: Currency;
+  user_num_charges_string?: string;
+  user_total_cost_string?: string;
+  user_range_added_string?: string;
+  user_avg_session_length?: string;
+  tile_url?: string;
+}

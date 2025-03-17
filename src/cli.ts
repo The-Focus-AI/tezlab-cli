@@ -6,6 +6,7 @@ import { batteryCommand } from './commands/battery/index.js';
 import { roadTripsCommand } from './commands/roadtrips/index.js';
 import { statsCommand } from './commands/stats/index.js';
 import { trendsCommand } from './commands/trends/index.js';
+import { superchargersCommand } from './commands/superchargers/index.js';
 
 const cli = subcommands({
   name: 'tezlab',
@@ -17,6 +18,7 @@ const cli = subcommands({
     roadtrips: roadTripsCommand,
     stats: statsCommand,
     trends: trendsCommand,
+    superchargers: superchargersCommand,
   },
 });
 
