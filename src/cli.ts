@@ -4,6 +4,8 @@ import { loginCommand } from './commands/login/index.js';
 import { chargeCommand } from './commands/charge/index.js';
 import { batteryCommand } from './commands/battery/index.js';
 import { roadTripsCommand } from './commands/roadtrips/index.js';
+import { statsCommand } from './commands/stats/index.js';
+import { trendsCommand } from './commands/trends/index.js';
 
 const cli = subcommands({
   name: 'tezlab',
@@ -13,6 +15,8 @@ const cli = subcommands({
     charge: chargeCommand,
     battery: batteryCommand,
     roadtrips: roadTripsCommand,
+    stats: statsCommand,
+    trends: trendsCommand,
   },
 });
 

@@ -54,3 +54,4 @@ coverage/
 # Project specific
 records/
 token.json 
+debug/

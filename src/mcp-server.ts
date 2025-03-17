@@ -3,6 +3,8 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { ChargeReport } from './commands/charge/ChargeReport.js';
 import { BatteryInfo } from './commands/battery/BatteryInfo.js';
 import { RoadTrips } from './commands/roadtrips/RoadTrips.js';
+import { Stats } from './commands/stats/Stats.js';
+import { Trends } from './commands/trends/Trends.js';
 import { z } from 'zod';
 
 // Create server instance
@@ -75,6 +77,32 @@ server.tool(
   }
 );
 
+server.tool('vehicleStats', 'Get statistics about your vehicle', {}, async ({}) => {
+  const client = new Stats(undefined, false);
+  const stats = await client.getStats();
+  return {
+    content: [
+      {
+        type: 'text',
+        text: JSON.stringify(stats, null, 2),
+      },
+    ],
+  };
+});
+
+server.tool('vehicleTrends', 'Get trends data about your vehicle', {}, async ({}) => {
+  const client = new Trends(undefined, false);
+  const trends = await client.getTrends();
+  return {
+    content: [
+      {
+        type: 'text',
+        text: JSON.stringify(trends, null, 2),
+      },
+    ],
+  };
+});
+
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
@@ -83,7 +111,7 @@ async function main() {
 
 main()
   .then(() => {
-    console.error('Tezlab MCP Server running on stdio');
+    // console.error('Tezlab MCP Server running on stdio');
   })
   .catch((error) => {
     console.error('Fatal error in main():', error);

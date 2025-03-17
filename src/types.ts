@@ -219,3 +219,35 @@ export interface RoadTripsResponse {
     };
   };
 }
+
+export interface StatItem {
+  title: string;
+  display_type: string;
+  icon: string;
+  stat: string;
+  summary: boolean;
+}
+
+export interface StatsResponse {
+  id: number;
+  from_date: number;
+  model_name: string;
+  efficiency_string: string;
+  avg_speed_string: string;
+  stats: StatItem[];
+  efficiency_pct: string;
+  vehicle_id: number;
+  vehicle_tesla_id: number;
+  vehicle_vin: string;
+}
+
+export interface TrendItem {
+  day: number;
+  day_str: string;
+  dist_mi: number;
+  bar_h: number;
+}
+
+export interface TrendsResponse {
+  trends: TrendItem[];
+}
